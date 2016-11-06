@@ -1,4 +1,4 @@
-My [Giter8][g8] template for scala full stack project.
+My [Giter8][g8] template for scala full stack project, WIP.
 
 ## Usage
 
