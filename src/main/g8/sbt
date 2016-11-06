@@ -1,0 +1,24 @@
+#!/bin/bash
+
+SBT_JAR=sbt-launch.jar
+
+SBT_OPTS="
+  -Dsbt.repository.config=$(dirname "$0")/repositories \
+  -Dsbt.override.build.repos=true
+  "
+java -ea                          \
+  $SBT_OPTS                       \
+  $JAVA_OPTS                      \
+  $PROXY                          \
+  -XX:+AggressiveOpts             \
+  -XX:+UseParNewGC                \
+  -XX:+UseConcMarkSweepGC         \
+  -XX:+CMSParallelRemarkEnabled   \
+  -XX:+CMSClassUnloadingEnabled   \
+  -XX:ReservedCodeCacheSize=128m  \
+  -XX:SurvivorRatio=128           \
+  -XX:MaxTenuringThreshold=0      \
+  -Xms512M                        \
+  -Xmx1280M                       \
+  -server                         \
+  -jar $SBT_JAR "$@"
